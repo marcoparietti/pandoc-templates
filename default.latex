@@ -1,4 +1,8 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{soul}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -8,6 +12,9 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[utf8]{inputenc}
+
+
+
 $if(euro)$
   \usepackage{eurosym}
 $endif$
@@ -20,6 +27,7 @@ $endif$
   \fi
   \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
   \newcommand{\euro}{€}
+
 $if(mainfont)$
     \setmainfont{$mainfont$}
 $endif$
@@ -62,6 +70,9 @@ $if(verbatim-in-note)$
 $endif$
 $if(tables)$
 \usepackage{longtable}
+\setlength\tabcolsep{1pt}
+\setlength\headwidth{\textwidth}
+
 $endif$
 $if(graphics)$
 \usepackage{graphicx}
@@ -142,6 +153,9 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
+\pagestyle{fancy}
+\cfoot{\thepage\ of \pageref{LastPage} }
+
 \begin{document}
 $if(title)$
 \maketitle
@@ -181,4 +195,6 @@ $for(include-after)$
 $include-after$
 
 $endfor$
+
+
 \end{document}
