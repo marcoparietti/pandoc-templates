@@ -13,6 +13,8 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[utf8]{inputenc}
 
+\usepackage{geometry}
+\geometry{a4paper,top=2cm,bottom=2cm,left=1cm,right=1cm}
 
 
 $if(euro)$
@@ -70,9 +72,6 @@ $if(verbatim-in-note)$
 $endif$
 $if(tables)$
 \usepackage{longtable}
-\setlength\tabcolsep{1pt}
-\setlength\headwidth{\textwidth}
-
 $endif$
 $if(graphics)$
 \usepackage{graphicx}
