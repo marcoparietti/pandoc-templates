@@ -80,18 +80,33 @@ $if(graphics)$
 % Images get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
-\def\ScaleIfNeeded{%
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
+\def\ScaleIfNeeded  {%
+      \ifdim\Gin@nat@width>\linewidth
+      \linewidth
+      \else
+      \Gin@nat@width
+      \fi
+   
 }
+
+\makeatletter
+\def\larg{%
+    \ifdim\Gin@nat@height>\paperheight 
+          \textheight
+       \else
+          \Gin@nat@height
+       \fi  
+}
+
 \makeatother
 \let\Oldincludegraphics\includegraphics
 {%
- \catcode`\@=11\relax%
+\catcode`\@=11\relax%
+\ifdim\Gin@nat@height>\Gin@nat@width
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[height=\larg]}}%
+\else
  \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+\fi
 }%
 $endif$
 \ifxetex
